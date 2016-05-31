@@ -1,39 +1,39 @@
 #include <stdio.h>
 #include <math.h>
-#include"../Headers/total.h" /* Символ '../' - escape-символ - используется для перехода на один уровень выше;
-                                Этот символ используется столько раз, на сколько уровней нужно подняться; */
+#include"../Headers/total.h" /* Ñèìâîë '../' - escape-ñèìâîë - èñïîëüçóåòñÿ äëÿ ïåðåõîäà íà îäèí óðîâåíü âûøå;
+                                Ýòîò ñèìâîë èñïîëüçóåòñÿ ñòîëüêî ðàç, íà ñêîëüêî óðîâíåé íóæíî ïîäíÿòüñÿ; */
 
 double selectionswitchAngle(double MEASUREMENT)
 {
     FunctionsParameters key;
 
-    printf("Выберите величину, из которой Вы хотите произвести конвертирование:\n"
-           "1 - Ньютон;\n"
-           "2 - Килоньютон;\n"
-           "3 - Миллиньютон;\n"
-           "4 - Меганьютон;\n"
-           "5 - Микроньютон;\n"
-           "6 - Килограмм-сила;\n"
-           "7 - Фунт-сила;\n\t");
+    printf("Âûáåðèòå âåëè÷èíó, èç êîòîðîé Âû õîòèòå ïðîèçâåñòè êîíâåðòèðîâàíèå:\n"
+           "1 - Íüþòîí;\n"
+           "2 - Êèëîíüþòîí;\n"
+           "3 - Ìèëëèíüþòîí;\n"
+           "4 - Ìåãàíüþòîí;\n"
+           "5 - Ìèêðîíüþòîí;\n"
+           "6 - Êèëîãðàìì-ñèëà;\n"
+           "7 - Ôóíò-ñèëà;\n\t");
     scanf("%d", &key.input_choice);
     while(key.input_choice >= 10 || key.input_choice == 0) {
-        fprintf(stderr, "\nВы выбрали величину, которой нет в списке доступных величин. \nПожалуйста, сделайте корректный выбор\n\t");
+        fprintf(stderr, "\nÂû âûáðàëè âåëè÷èíó, êîòîðîé íåò â ñïèñêå äîñòóïíûõ âåëè÷èí. \nÏîæàëóéñòà, ñäåëàéòå êîððåêòíûé âûáîð\n\t");
         scanf("%d", &key.input_choice);
     }
 
-    printf("Выберите величину, в которую Вы хотите конвертировать Вашу величину.\n"
-           "Не нужно выбирать ту же величину, что Вы выбрали в качестве конвертируемой:\n"
-           "1 - Ньютон;\n"
-           "2 - Килоньютон;\n"
-           "3 - Миллиньютон;\n"
-           "4 - Меганьютон;\n"
-           "5 - Микроньютон;\n"
-           "6 - Килограмм-сила;\n"
-           "7 - Фунт-сила;\n\t");
+    printf("Âûáåðèòå âåëè÷èíó, â êîòîðóþ Âû õîòèòå êîíâåðòèðîâàòü Âàøó âåëè÷èíó.\n"
+           "Íå íóæíî âûáèðàòü òó æå âåëè÷èíó, ÷òî Âû âûáðàëè â êà÷åñòâå êîíâåðòèðóåìîé:\n"
+           "1 - Íüþòîí;\n"
+           "2 - Êèëîíüþòîí;\n"
+           "3 - Ìèëëèíüþòîí;\n"
+           "4 - Ìåãàíüþòîí;\n"
+           "5 - Ìèêðîíüþòîí;\n"
+           "6 - Êèëîãðàìì-ñèëà;\n"
+           "7 - Ôóíò-ñèëà;\n\t");
     scanf("%d", &key.output_choice);
     while(key.output_choice == key.input_choice || key.input_choice >= 10 || key.input_choice == 0 )  {
-        fprintf(stderr, "\nВы выбрали величину, которой нет в списке доступных величин, \nили Вы пытаетесь конвертировать "
-                "одну и ту же величину. \nПожалуйста, сделайте корректный выбор\n\t");
+        fprintf(stderr, "\nÂû âûáðàëè âåëè÷èíó, êîòîðîé íåò â ñïèñêå äîñòóïíûõ âåëè÷èí, \nèëè Âû ïûòàåòåñü êîíâåðòèðîâàòü "
+                "îäíó è òó æå âåëè÷èíó. \nÏîæàëóéñòà, ñäåëàéòå êîððåêòíûé âûáîð\n\t");
         scanf("%d", &key.output_choice);
     }
 key.id = key.input_choice * 10 + key.output_choice;
@@ -61,113 +61,113 @@ key.id = key.input_choice * 10 + key.output_choice;
             key.gate = kNewton2Newton(MEASUREMENT);
             break;
         case 23:
-            key.gate = kNewton2mNewton(MEASUREMENT);
+            key.gate = Newton2mNewton(kNewton2Newton(MEASUREMENT));
             break;
         case 24:
-            key.gate = kNewton2MgNewton(MEASUREMENT);
+            key.gate = Newton2MgNewton(kNewton2Newton(MEASUREMENT));
             break;
         case 25:
-            key.gate = kNewton2MkNewton(MEASUREMENT);
+            key.gate = Newton2MkNewton(kNewton2Newton(MEASUREMENT));
             break;
         case 26:
-            key.gate = kNewton2kgsNewton(MEASUREMENT);
+            key.gate = Newton2kgsNewton(kNewton2Newton(MEASUREMENT));
             break;
         case 27:
-            key.gate = kNewton2fsNewton(MEASUREMENT);
+            key.gate = Newton2fsNewton(kNewton2Newton(MEASUREMENT));
             break;
         case 31:
             key.gate = mNewton2Newton(MEASUREMENT);
             break;
         case 32:
-            key.gate = mNewton2kNewton(MEASUREMENT);
+            key.gate = Newton2kNewton(mNewton2Newton(MEASUREMENT));
             break;
         case 34:
-            key.gate = mNewton2MgNewton(MEASUREMENT);
+            key.gate = Newton2MgNewton(mNewton2Newton(MEASUREMENT));
             break;
         case 35:
-            key.gate = mNewton2MkNewton(MEASUREMENT);
+            key.gate = Newton2MkNewton(mNewton2Newton(MEASUREMENT));
             break;
         case 36:
-            key.gate = mNewton2kgsNewton(MEASUREMENT);
+            key.gate = Newton2kgsNewton(mNewton2Newton(MEASUREMENT));
             break;
         case 37:
-            key.gate = mNewton2fsNewton(MEASUREMENT);
+            key.gate = Newton2fsNewton(mNewton2Newton(MEASUREMENT));
             break;
         case 41:
             key.gate = MgNewton2Newton(MEASUREMENT);
             break;
         case 42:
-            key.gate = MgNewton2kNewton(MEASUREMENT);
+            key.gate = Newton2kNewton(MgNewton2Newton(MEASUREMENT));
             break;
         case 43:
-            key.gate = MgNewton2mNewton(MEASUREMENT);
+            key.gate = Newton2mNewton(MgNewton2Newton(MEASUREMENT));
             break;
         case 45:
-            key.gate = MgNewton2MkNewton(MEASUREMENT);
+            key.gate = Newton2MkNewton(MgNewton2Newton(MEASUREMENT));
             break;
         case 46:
-            key.gate = MgNewton2kgsNewton(MEASUREMENT);
+            key.gate = Newton2kgsNewton(MgNewton2Newton(MEASUREMENT));
             break;
         case 47:
-            key.gate = MgNewton2fsNewton(MEASUREMENT);
+            key.gate = Newton2fsNewton(MgNewton2Newton(MEASUREMENT));
             break;
         case 51:
             key.gate = MkNewton2Newton(MEASUREMENT);
             break;
         case 52:
-            key.gate = MkNewton2kNewton(MEASUREMENT);
+            key.gate = Newton2kNewton(MkNewton2Newton(MEASUREMENT));
             break;
         case 53:
-            key.gate = MkNewton2mNewton(MEASUREMENT);
+            key.gate = Newton2mNewton(MkNewton2Newton(MEASUREMENT));
             break;
         case 54:
-            key.gate = MkNewton2MgNewton(MEASUREMENT);
+            key.gate = Newton2MgNewton(MkNewton2Newton(MEASUREMENT));
             break;
         case 56:
-            key.gate = MkNewton2kgsNewton(MEASUREMENT);
+            key.gate = Newton2kgsNewton(MkNewton2Newton(MEASUREMENT));
             break;
         case 57:
-            key.gate = MkNewton2fsNewton(MEASUREMENT);
+            key.gate = Newton2fsNewton(MkNewton2Newton(MEASUREMENT));
             break;
         case 61:
             key.gate = kgsNewton2Newton(MEASUREMENT);
             break;
         case 62:
-            key.gate = kgsNewton2kNewton(MEASUREMENT);
+            key.gate = Newton2kNewton(kgsNewton2Newton(MEASUREMENT));
             break;
         case 63:
-            key.gate = kgsNewton2mNewton(MEASUREMENT);
+            key.gate = Newton2mNewton(kgsNewton2Newton(MEASUREMENT));
             break;
         case 64:
-            key.gate = kgsNewton2MgNewton(MEASUREMENT);
+            key.gate = Newton2MgNewton(kgsNewton2Newton(MEASUREMENT));
             break;
         case 65:
-            key.gate = kgsNewton2MkNewton(MEASUREMENT);
+            key.gate = Newton2MkNewton(kgsNewton2Newton(MEASUREMENT));
             break;
         case 67:
-            key.gate = kgsNewton2fsNewton(MEASUREMENT);
+            key.gate = Newton2fsNewton(kgsNewton2Newton(MEASUREMENT));
             break;
         case 71:
             key.gate = fsNewton2Newton(MEASUREMENT);
             break;
         case 72:
-            key.gate = fsNewton2kNewton(MEASUREMENT);
+            key.gate = Newton2kNewton(fsNewton2Newton(MEASUREMENT));
             break;
         case 73:
-            key.gate = fsNewton2mNewton(MEASUREMENT);
+            key.gate = Newton2mNewton(fsNewton2Newton(MEASUREMENT));
             break;
         case 74:
-            key.gate = fsNewton2MgNewton(MEASUREMENT);
+            key.gate = Newton2MgNewton(fsNewton2Newton(MEASUREMENT));
             break;
         case 75:
-            key.gate = fsNewton2MkNewton(MEASUREMENT);
+            key.gate = Newton2MkNewton(fsNewton2Newton(MEASUREMENT));
             break;
         case 76:
-            key.gate = fsNewton2kgsNewton(MEASUREMENT);
+            key.gate = Newton2kgsNewton(fsNewton2Newton(MEASUREMENT));
             break;
         default:
-            printf("Не введено значение конвертируемой величины, "
-                   "или Вы пытаетесь конвертировать в величину, которую уже преобразуете\n");
+            printf("Íå ââåäåíî çíà÷åíèå êîíâåðòèðóåìîé âåëè÷èíû, "
+                   "èëè Âû ïûòàåòåñü êîíâåðòèðîâàòü â âåëè÷èíó, êîòîðóþ óæå ïðåîáðàçóåòå\n");
             break;
     }
 
